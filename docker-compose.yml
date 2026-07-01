@@ -1,0 +1,9 @@
+services:
+  web:
+    build:
+      context: .
+    image: xiangliangweb:latest
+    container_name: xiangliangweb
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:18080:80"

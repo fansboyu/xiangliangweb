@@ -11,7 +11,7 @@ npm run dev
 
 默认开发地址为 `http://localhost:5173`。
 
-## 服务器源码部署
+## 服务器源码部署：Docker + Caddy
 
 1. 安装依赖环境：
 
@@ -28,24 +28,19 @@ git clone https://github.com/fansboyu/xiangliangweb.git
 cd xiangliangweb
 ```
 
-3. 安装依赖并构建：
+3. 使用 Docker 构建并启动前端：
 
 ```bash
-npm ci
-npm run build
+docker compose up -d --build
 ```
 
-4. 配置 Caddy：
+容器会监听宿主机本地端口 `127.0.0.1:18080`。
+
+4. 配置宿主机 Caddy：
 
 将 `Caddyfile.example` 中的域名和路径按服务器实际情况调整后写入 `/etc/caddy/Caddyfile`。
 
-如果项目目录为 `/opt/xiangliangweb`，构建后的前端目录就是：
-
-```bash
-/opt/xiangliangweb/dist
-```
-
-5. 重载 Caddy：
+5. 重载宿主机 Caddy：
 
 ```bash
 sudo caddy fmt --overwrite /etc/caddy/Caddyfile
