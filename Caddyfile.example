@@ -1,0 +1,13 @@
+# Replace example.com with your domain.
+# Replace /opt/xiangliangweb/dist with the actual dist path after npm run build.
+example.com {
+	root * /opt/xiangliangweb/dist
+	encode gzip zstd
+
+	# React/Vite single page app fallback.
+	try_files {path} /index.html
+	file_server
+
+	# Optional: proxy API requests to backend.
+	# reverse_proxy /api/* 127.0.0.1:8080
+}
